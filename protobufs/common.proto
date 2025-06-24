@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+enum FileType {
+  PDF = 0;
+  IMAGE = 1;
+}
+
+message FileChunk {
+  bytes content = 1;
+  FileType type = 2; // FileType for default PDF/IMG
+}
+
+message ProgressResponse {
+  oneof update {
+    // meaning that at a time only of the two values can exist not both
+    float percent = 1;
+    string result = 2;
+  }
+}
