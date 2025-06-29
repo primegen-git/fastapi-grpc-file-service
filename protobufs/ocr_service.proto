@@ -2,7 +2,7 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 import "common.proto";
 
-service FileProcessor {
+service ImageProcessor {
   rpc ReadFileSize(FileSize) returns (google.protobuf.Empty);
-  rpc ProcessFile(stream FileChunk) returns (stream ProgressResponse);
+  rpc ProcessImage(stream FileChunk) returns (stream ProgressResponse);
 }

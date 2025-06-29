@@ -17,3 +17,5 @@ message ProgressResponse {
     string result = 2;
   }
 }
+
+message FileSize { int32 size = 1; }

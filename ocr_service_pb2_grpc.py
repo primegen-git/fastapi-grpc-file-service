@@ -19,14 +19,14 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in pdf_service_pb2_grpc.py depends on'
+        + f' but the generated code in ocr_service_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
     )
 
 
-class FileProcessorStub(object):
+class ImageProcessorStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -36,18 +36,18 @@ class FileProcessorStub(object):
             channel: A grpc.Channel.
         """
         self.ReadFileSize = channel.unary_unary(
-                '/FileProcessor/ReadFileSize',
+                '/ImageProcessor/ReadFileSize',
                 request_serializer=common__pb2.FileSize.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.ProcessFile = channel.stream_stream(
-                '/FileProcessor/ProcessFile',
+        self.ProcessImage = channel.stream_stream(
+                '/ImageProcessor/ProcessImage',
                 request_serializer=common__pb2.FileChunk.SerializeToString,
                 response_deserializer=common__pb2.ProgressResponse.FromString,
                 _registered_method=True)
 
 
-class FileProcessorServicer(object):
+class ImageProcessorServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def ReadFileSize(self, request, context):
@@ -56,34 +56,34 @@ class FileProcessorServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ProcessFile(self, request_iterator, context):
+    def ProcessImage(self, request_iterator, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_FileProcessorServicer_to_server(servicer, server):
+def add_ImageProcessorServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ReadFileSize': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadFileSize,
                     request_deserializer=common__pb2.FileSize.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'ProcessFile': grpc.stream_stream_rpc_method_handler(
-                    servicer.ProcessFile,
+            'ProcessImage': grpc.stream_stream_rpc_method_handler(
+                    servicer.ProcessImage,
                     request_deserializer=common__pb2.FileChunk.FromString,
                     response_serializer=common__pb2.ProgressResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'FileProcessor', rpc_method_handlers)
+            'ImageProcessor', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('FileProcessor', rpc_method_handlers)
+    server.add_registered_method_handlers('ImageProcessor', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class FileProcessor(object):
+class ImageProcessor(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -100,7 +100,7 @@ class FileProcessor(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/FileProcessor/ReadFileSize',
+            '/ImageProcessor/ReadFileSize',
             common__pb2.FileSize.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options,
@@ -114,7 +114,7 @@ class FileProcessor(object):
             _registered_method=True)
 
     @staticmethod
-    def ProcessFile(request_iterator,
+    def ProcessImage(request_iterator,
             target,
             options=(),
             channel_credentials=None,
@@ -127,7 +127,7 @@ class FileProcessor(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/FileProcessor/ProcessFile',
+            '/ImageProcessor/ProcessImage',
             common__pb2.FileChunk.SerializeToString,
             common__pb2.ProgressResponse.FromString,
             options,
