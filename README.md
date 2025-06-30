@@ -65,6 +65,9 @@ A microservices-based system for processing PDF and image files using gRPC and F
 - `pdf_service.proto`: Defines the `FileProcessor` service for PDF processing.
 - `ocr_service.proto`: Defines the `ImageProcessor` service for image processing.
 
+### 5. Block Diagram
+   ![diagram](assets/block_diagram.png)
+
 ## Running the Project
 
 ### Prerequisites
