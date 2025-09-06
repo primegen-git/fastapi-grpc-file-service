@@ -1,4 +1,4 @@
-# File Processing Microservice
+# gRPC Based Microservice
 
 A microservices-based system for processing PDF and image files using gRPC and FastAPI. The project provides endpoints for uploading files, which are then streamed to backend services for PDF summarization or image OCR extraction.
 
